@@ -1,0 +1,37 @@
+---
+import Logo from "./Logo.astro";
+import MobileMenu from "@components/react/MobileMenu";
+import { NAV_LINKS } from "@data/content";
+---
+
+<header
+  class="fixed top-0 inset-x-0 z-50 bg-sand-50/90 backdrop-blur-sm border-b border-sand-200"
+  role="banner"
+>
+  <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+    <Logo />
+
+    <nav class="hidden md:flex items-center gap-7" aria-label="Navegação principal">
+      {NAV_LINKS.map((l) => (
+        <a
+          href={l.href}
+          class="text-sm text-neutral-600 hover:text-teal-700 transition-colors"
+        >
+          {l.label}
+        </a>
+      ))}
+    </nav>
+
+    <a
+      href="#contato"
+      class="hidden md:inline-flex items-center gap-2 bg-teal-700 hover:bg-teal-800 text-white text-sm font-medium px-5 py-2.5 rounded-full transition-colors"
+    >
+      Agendar consulta
+    </a>
+
+    {/* Menu mobile (ilha React) */}
+    <div class="md:hidden">
+      <MobileMenu client:load />
+    </div>
+  </div>
+</header>

@@ -1,0 +1,84 @@
+---
+import { SITE } from "@data/content";
+
+interface Props {
+  title: string;
+  description: string;
+  image: string;
+  canonical: string;
+}
+
+const { title, description, image, canonical } = Astro.props;
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Dentist",
+  name: SITE.name,
+  description: SITE.description,
+  url: SITE.url,
+  telephone: SITE.phone,
+  email: SITE.email,
+  priceRange: "$$",
+  image: image,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: SITE.address.street,
+    addressLocality: SITE.address.city,
+    addressRegion: SITE.address.state,
+    postalCode: SITE.address.zip,
+    addressCountry: "BR",
+  },
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      opens: "08:00",
+      closes: "20:00",
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: "Saturday",
+      opens: "08:00",
+      closes: "14:00",
+    },
+  ],
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "4.9",
+    reviewCount: "340",
+  },
+  sameAs: [
+    "https://www.instagram.com/sorrirodonto",
+    "https://www.facebook.com/sorrirodonto",
+  ],
+};
+---
+
+{/* Primary Meta Tags */}
+<title>{title}</title>
+<meta name="title" content={title} />
+<meta name="description" content={description} />
+<meta name="keywords" content={SITE.keywords.join(", ")} />
+<meta name="author" content={SITE.name} />
+<meta name="robots" content="index, follow" />
+<meta name="language" content="Portuguese" />
+<meta name="geo.region" content="BR-SP" />
+<meta name="geo.placename" content={SITE.address.city} />
+
+{/* Open Graph / Facebook */}
+<meta property="og:type" content="website" />
+<meta property="og:url" content={canonical} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={image} />
+<meta property="og:locale" content={SITE.locale} />
+<meta property="og:site_name" content={SITE.name} />
+
+{/* Twitter */}
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:url" content={canonical} />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={image} />
+
+{/* Schema.org JSON-LD */}
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />

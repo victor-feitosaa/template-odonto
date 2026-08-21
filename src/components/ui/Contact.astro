@@ -1,0 +1,70 @@
+---
+import { SITE } from "@data/content";
+import { MapPin, Phone as PhoneIcon, Clock } from "@lucide/astro";
+import ContactForm from "@components/react/ContactForm";
+
+const contactItems = [
+  {
+    icon: MapPin,
+    label: "Endereço",
+    value: `${SITE.address.street}\n${SITE.address.city}, ${SITE.address.state} — ${SITE.address.zip}`,
+  },
+  {
+    icon: PhoneIcon,
+    label: "Telefone",
+    value: SITE.phoneDisplay,
+  },
+  {
+    icon: Clock,
+    label: "Horário de atendimento",
+    value: `${SITE.hours.weekday}\n${SITE.hours.saturday}`,
+  },
+];
+---
+
+<section id="contato" class="py-24 bg-sand-50">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="grid md:grid-cols-[1fr_1.2fr] gap-12 items-start">
+      <div>
+        <span class="text-xs font-medium tracking-widest uppercase text-teal-600">
+          Contato
+        </span>
+        <h2 class="font-display text-4xl lg:text-5xl text-teal-950 mt-3 mb-6 leading-tight">
+          Agende sua consulta
+        </h2>
+        <p class="text-neutral-500 text-base leading-relaxed mb-10">
+          Preencha o formulário ao lado ou nos chame diretamente pelo WhatsApp.
+          Nossa equipe confirma o agendamento em menos de 1 hora.
+        </p>
+
+        <div class="space-y-5">
+          {contactItems.map((item) => {
+            const Icon = item.icon;
+            return (
+              <div class="flex gap-4 items-start">
+                <div class="w-10 h-10 rounded-xl bg-teal-50 flex items-center justify-center shrink-0">
+                  <Icon class="w-5 h-5 text-teal-600" />
+                </div>
+                <div>
+                  <p class="text-xs font-semibold uppercase tracking-wider text-neutral-400 mb-0.5">
+                    {item.label}
+                  </p>
+                  <p class="text-sm text-neutral-700 whitespace-pre-line">
+                    {item.value}
+                  </p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      <div class="bg-white rounded-3xl p-8 border border-sand-200 shadow-sm">
+        <h3 class="font-semibold text-teal-950 text-lg mb-6">
+          Solicitar agendamento
+        </h3>
+        <ContactForm client:visible />
+      </div>
+    </div>
+  </div>
+</section>

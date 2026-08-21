@@ -1,0 +1,12 @@
+---
+import { SITE } from "@data/content";
+---
+
+<a href="/" class="flex items-center gap-2.5 group" aria-label={SITE.name}>
+  <div class="w-7 h-7 rounded-full bg-teal-700 flex items-center justify-center group-hover:bg-teal-800 transition-colors">
+    <svg viewBox="0 0 24 24" class="w-4 h-4 fill-white" aria-hidden="true">
+      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z" />
+    </svg>
+  </div>
+  <span class="font-display text-xl text-teal-900">{SITE.name}</span>
+</a>

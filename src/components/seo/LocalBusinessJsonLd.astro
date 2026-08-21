@@ -1,0 +1,40 @@
+---
+import { SITE, SERVICES } from "@data/content";
+
+const servicesSchema = SERVICES.map((s) => ({
+  "@type": "MedicalProcedure",
+  name: s.name,
+  description: s.desc,
+}));
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "MedicalBusiness",
+  medicalSpecialty: "Dentistry",
+  name: SITE.name,
+  description: SITE.description,
+  url: SITE.url,
+  telephone: SITE.phone,
+  email: SITE.email,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: SITE.address.street,
+    addressLocality: SITE.address.city,
+    addressRegion: SITE.address.state,
+    postalCode: SITE.address.zip,
+    addressCountry: "BR",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: -23.5614,
+    longitude: -46.6558,
+  },
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Tratamentos Odontológicos",
+    itemListElement: servicesSchema,
+  },
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />

@@ -1,0 +1,54 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Instrument+Sans:wght@400;500;600;700&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --font-display: "DM Serif Display", serif;
+  --font-sans: "Instrument Sans", sans-serif;
+
+  --color-teal-950: #0b2e2a;
+  --color-teal-900: #103b34;
+  --color-teal-800: #164f45;
+  --color-teal-700: #1e6b5d;
+  --color-teal-600: #287a6b;
+  --color-teal-500: #3a9685;
+  --color-teal-400: #5ab5a4;
+  --color-teal-100: #d4f0eb;
+  --color-teal-50: #f0faf8;
+
+  --color-coral-500: #e85d3c;
+  --color-coral-400: #f07455;
+
+  --color-sand-50: #faf9f6;
+  --color-sand-100: #f3f1ec;
+  --color-sand-200: #e8e4dc;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-sand-50);
+  color: #1a1a1a;
+  -webkit-font-smoothing: antialiased;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #c5c0b8;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #a09a90;
+}
+
+/* Classe utilitária para fontes display */
+.font-display {
+  font-family: var(--font-display);
+}

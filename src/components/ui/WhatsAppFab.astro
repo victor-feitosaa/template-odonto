@@ -1,0 +1,20 @@
+---
+import { SITE } from "@data/content";
+import WhatsAppIcon from "./WhatsAppIcon.astro";
+---
+
+<a
+  href={`https://wa.me/${SITE.whatsapp}`}
+  target="_blank"
+  rel="noopener noreferrer"
+  class="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-green-500 hover:bg-green-600 shadow-lg hover:shadow-xl flex items-center justify-center transition-all hover:scale-105 group"
+  aria-label="Falar no WhatsApp"
+>
+  <!-- Efeito de pulsação (onda) -->
+  <span class="absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75 animate-ping" />
+  
+  <!-- Ícone (com z-10 para ficar por cima da animação) -->
+  <div class="relative z-10">
+    <WhatsAppIcon class="w-7 h-7 fill-white" />
+  </div>
+</a>

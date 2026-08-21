@@ -1,0 +1,14 @@
+---
+import { Star } from "@lucide/astro";
+
+interface Props {
+  count: number;
+}
+const { count } = Astro.props;
+---
+
+<div class="flex gap-0.5" aria-label={`${count} de 5 estrelas`}>
+  {Array.from({ length: count }).map(() => (
+    <Star class="w-4 h-4 fill-teal-600 text-teal-600" />
+  ))}
+</div>

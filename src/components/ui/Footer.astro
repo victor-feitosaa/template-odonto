@@ -1,0 +1,84 @@
+---
+import Logo from "./Logo.astro";
+import { SITE, SERVICES } from "@data/content";
+---
+
+<footer class="bg-teal-950 text-teal-300 py-12" role="contentinfo">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+      <div>
+        <div class="mb-4">
+          <Logo />
+        </div>
+        <p class="text-sm text-teal-400 leading-relaxed">
+          Clínica odontológica completa em {SITE.address.city}. {SITE.cro}.
+        </p>
+      </div>
+
+      <div>
+        <h4 class="text-white text-sm font-semibold mb-4">Serviços</h4>
+        <ul class="space-y-2">
+          {SERVICES.slice(0, 4).map((s) => (
+            <li>
+              <a
+                href={`#${s.slug}`}
+                class="text-sm text-teal-400 hover:text-white transition-colors"
+              >
+                {s.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-white text-sm font-semibold mb-4">Links úteis</h4>
+        <ul class="space-y-2">
+          {["Sobre nós", "Convênios aceitos", "Blog de saúde bucal", "Política de privacidade"].map(
+            (l) => (
+              <li>
+                <a
+                  href="#"
+                  class="text-sm text-teal-400 hover:text-white transition-colors"
+                >
+                  {l}
+                </a>
+              </li>
+            )
+          )}
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-white text-sm font-semibold mb-4">Contato</h4>
+        <ul class="space-y-2 text-sm text-teal-400">
+          <li>{SITE.address.street}</li>
+          <li>
+            {SITE.address.city}, {SITE.address.state}
+          </li>
+          <li class="pt-1">
+            <a
+              href={`tel:${SITE.phone}`}
+              class="hover:text-white transition-colors"
+            >
+              {SITE.phoneDisplay}
+            </a>
+          </li>
+          <li>
+            <a
+              href={`mailto:${SITE.email}`}
+              class="hover:text-white transition-colors"
+            >
+              {SITE.email}
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="border-t border-teal-800 pt-8 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-teal-600">
+      <p>© {new Date().getFullYear()} {SITE.name}. Todos os direitos reservados.</p>
+      <p>Desenvolvido com cuidado para você.</p>
+    </div>
+  </div>
+</footer>

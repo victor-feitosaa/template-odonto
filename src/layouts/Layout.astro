@@ -1,0 +1,44 @@
+---
+import "@/styles/global.css";
+import Seo from "@components/seo/Seo.astro";
+import { SITE } from "@data/content";
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  canonical?: string;
+}
+
+const {
+  title = `${SITE.name} — ${SITE.tagline}`,
+  description = SITE.description,
+  image = `${SITE.url}/og-image.jpg`,
+  canonical = SITE.url,
+} = Astro.props;
+---
+
+<html lang={SITE.locale}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <Seo
+      title={title}
+      description={description}
+      image={image}
+      canonical={canonical}
+    />
+
+    {/* Preconnect para performance */}
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://images.unsplash.com" />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
